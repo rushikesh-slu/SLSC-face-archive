@@ -10,4 +10,4 @@ def client():
 
 def test_index(client):
     response = client.get('/')
-    assert response.data == b"SLSC face tagging" 
+    assert response.data == b"SLSC face tagging"
