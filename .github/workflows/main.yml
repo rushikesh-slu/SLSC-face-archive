@@ -16,6 +16,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    -name: Run Tests
+      run: npm run
+
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
