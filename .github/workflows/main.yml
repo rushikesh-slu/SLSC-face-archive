@@ -37,14 +37,32 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
-        pytest
-        
+        pytest 
+        pytest-cov
+        pytest --cov-report xml --cov=.
+    
+    - name: Collect code coverage report
+      run: |
+       pip install coverage
+       coverage xml -o coverage.xml
+   
+    - name: Upload coverage report as artifact
+      uses: actions/upload-artifact@v2
+      with:
+       name: Coverage Report
+       path: coverage.xml
+       
+       
+    - name: Display code coverage summary
+      run: |
+        pip install coverage
+        coverage report --show-missing
+
+
     - name: Zip Release
       uses: TheDoctor0/zip-release@0.7.1
       with:
         filename: slsc-face-archive.zip
-
-      
         
     - name: Create Release
       id: create_release
@@ -67,4 +85,5 @@ jobs:
         asset_path: ./slsc-face-archive.zip
         asset_name: slsc-face-archive.zip
         asset_content_type: application/zip
+
     
