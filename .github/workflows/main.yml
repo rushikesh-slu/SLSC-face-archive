@@ -44,7 +44,19 @@ jobs:
       with:
         filename: slsc-face-archive.zip
 
-      
+    - name: Install Sphinx
+      run: |
+        pip install sphinx
+    - name: Build HTML documentation
+      run: |
+        sphinx-build -b html docs docs/build/html
+    - name: Deploy to GitHub Pages
+      uses: uibcdf/action-sphinx-docs-to-gh-pages@v1.0
+      with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: main # or master
+          destination_branch: gh-pages
+  
         
     - name: Create Release
       id: create_release
