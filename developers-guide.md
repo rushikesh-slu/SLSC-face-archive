@@ -57,6 +57,6 @@ To contribute to this project, you need to:
 
 ## License and Acknowledgements
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/yourname/yourrepo/blob/main/LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/rushikesh-slu/SLSC-face-archive/pull/29) file for more details.
 
-This project is based on the [zip-release](https://github.com/TheDoctor0/zip-release) action by TheDoctor0 and the [action-sphinx-docs-to-gh-pages](https://github.com/marketplace/actions/action-sphinx-docs-to-gh-pages) action by yzane.
+This project is based on the [zip-release](https://github.com/TheDoctor0/zip-release) action by TheDoctor0 and the [action-sphinx-docs-to-gh-pages](https://github.com/marketplace/actions/action-sphinx-docs-to-gh-pages)
