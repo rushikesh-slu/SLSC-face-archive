@@ -8,6 +8,7 @@ from torchvision.transforms import ToTensor
 from facenet_pytorch import MTCNN, InceptionResnetV1
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
+from sklearn.cluster import DBSCAN
 import ssl
 import uuid
 
@@ -71,12 +72,31 @@ for image_path in image_files:
     except Exception as e:
         print(f"Error processing image {image_path}: {e}")
 
-# Save the face embeddings and image paths to a CSV file
+# Save the face embeddings and image paths with cluster numbers to a CSV file
 with open(output_csv, 'w', newline='') as csvfile:
     csv_writer = csv.writer(csvfile)
-    csv_writer.writerow(['UUID', 'Image_Names'])
+    csv_writer.writerow(['UUID', 'Cluster', 'Image_Names'])
+
+    # Perform clustering using DBSCAN
+    dbscan = DBSCAN(eps=0.5, min_samples=5)
+    cluster_labels = dbscan.fit_predict(embeddings)
+
+    # Determine the number of clusters (excluding noise points)
+    num_clusters = len(set(cluster_labels)) - (1 if -1 in cluster_labels else 0)
+
+    # Create a dictionary to store UUIDs as keys and a list of image names and cluster numbers as values
+    uuid_dict_with_cluster = {}
+
+    # Update the dictionary with the cluster number for each person and their images
     for person_name, image_list in uuid_dict.items():
-        csv_writer.writerow([person_name, ', '.join(image_list)])
+        cluster_number = cluster_labels[image_paths.index(os.path.join(image_folder, image_list[0]))]
+        uuid_dict_with_cluster[person_name] = {'cluster': cluster_number, 'images': image_list}
+
+    # Write the data to the CSV file
+    for person_name, cluster_info in uuid_dict_with_cluster.items():
+        cluster_number = cluster_info['cluster']
+        image_list = cluster_info['images']
+        csv_writer.writerow([person_name, cluster_number, ', '.join(image_list)])
 
 # Apply t-SNE to reduce the embeddings to 2D
 # Convert embeddings from a list of 1D arrays to a 2D array
@@ -86,12 +106,16 @@ embeddings_2d_array = np.array(embeddings)
 tsne = TSNE(n_components=2, random_state=0)
 embeddings_2d = tsne.fit_transform(embeddings_2d_array)
 
-# Create a scatter plot of the 2D embeddings
+# Create a scatter plot of the 2D embeddings with clustering and circles
 plt.figure(figsize=(8, 6))
-plt.scatter(embeddings_2d[:, 0], embeddings_2d[:, 1], c='b', marker='o')
-for i, path in enumerate(image_paths):
-    plt.annotate(os.path.basename(path), (embeddings_2d[i, 0], embeddings_2d[i, 1]), fontsize=8)
-plt.title('t-SNE Visualization of Face Embeddings')
+
+# Plot each point with a different color based on its cluster
+for i in range(num_clusters):
+    cluster_points = embeddings_2d[cluster_labels == i]
+    plt.scatter(cluster_points[:, 0], cluster_points[:, 1], marker='o', label=f'Cluster {i}')
+
+plt.title('t-SNE Visualization with DBSCAN Clustering')
 plt.xlabel('Dimension 1')
 plt.ylabel('Dimension 2')
+plt.legend()
 plt.show()
