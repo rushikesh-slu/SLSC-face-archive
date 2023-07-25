@@ -24,29 +24,6 @@ def load_image(image_path):
 def get_face_embedding(img, resnet):
     return resnet(img.unsqueeze(0)).detach().numpy()[0]
 
-# Function to visualize images in a cluster
-def visualize_cluster_images(cluster_number, uuid_dict_with_cluster):
-    plt.figure(figsize=(10, 10))
-    plt.title(f'Images in Cluster {cluster_number}')
-    
-    cluster_images = []
-    for person_name, cluster_info in uuid_dict_with_cluster.items():
-        if cluster_info['cluster'] == cluster_number:
-            image_list = cluster_info['images']
-            for image_name in image_list:
-                image_path = os.path.join(image_folder, image_name)
-                img = Image.open(image_path)
-                cluster_images.append(img)
-
-    # Display images in a grid
-    grid_size = int(np.ceil(np.sqrt(len(cluster_images))))
-    for i, img in enumerate(cluster_images):
-        plt.subplot(grid_size, grid_size, i+1)
-        plt.imshow(img)
-        plt.axis('off')
-    
-    plt.show()
-
 # Replace 'path_to_image_folder' with the path to your image folder
 image_folder = '/Users/beffiong/desktop/YES JPEGs'
 output_csv = 'output.csv'
@@ -77,21 +54,24 @@ uuid_dict = {}
 for image_path in image_files:
     try:
         img = load_image(image_path).to(device)
-        face_embedding = get_face_embedding(img, resnet)
-        embeddings.append(face_embedding)
-        image_paths.append(image_path)
+        faces, _ = mtcnn(img.unsqueeze(0))
+        if faces is not None:
+            for face in faces:
+                face_embedding = get_face_embedding(face, resnet)
+                embeddings.append(face_embedding)
+                image_paths.append(image_path)
 
-        # Get the person's name (replace this with your logic to get the person's name from the image path)
-        person_name = os.path.basename(image_path).split('.')[0]
+                # Get the person's name (replace this with your logic to get the person's name from the image path)
+                person_name = os.path.basename(image_path).split('.')[0]
 
-        # Check if the person's UUID already exists in the dictionary
-        if person_name in uuid_dict:
-            # If it exists, add the image name to the existing UUID's list of images
-            uuid_dict[person_name].append(os.path.basename(image_path))
-        else:
-            # If it doesn't exist, generate a new UUID and create a new entry in the dictionary
-            new_uuid = str(uuid.uuid4())
-            uuid_dict[person_name] = [os.path.basename(image_path)]
+                # Check if the person's UUID already exists in the dictionary
+                if person_name in uuid_dict:
+                    # If it exists, add the image name to the existing UUID's list of images
+                    uuid_dict[person_name].append(os.path.basename(image_path))
+                else:
+                    # If it doesn't exist, generate a new UUID and create a new entry in the dictionary
+                    new_uuid = str(uuid.uuid4())
+                    uuid_dict[person_name] = [os.path.basename(image_path)]
     except Exception as e:
         print(f"Error processing image {image_path}: {e}")
 
@@ -141,8 +121,16 @@ plt.title('t-SNE Visualization with DBSCAN Clustering')
 plt.xlabel('Dimension 1')
 plt.ylabel('Dimension 2')
 plt.legend()
-plt.show()
 
-# Visualize images in each cluster
+# Create a folder to save the visualizations
+save_folder = 'visualizations'
+os.makedirs(save_folder, exist_ok=True)
+
+# Save the t-SNE visualization to a file
+tsne_save_path = os.path.join(save_folder, 't-SNE_Visualization.png')
+plt.savefig(tsne_save_path)
+plt.close()
+
+# Visualize images in each cluster and save the visualizations
 for i in range(num_clusters):
-    visualize_cluster_images(i, uuid_dict_with_cluster)
+    visualize_cluster_images(i, uuid_dict_with_cluster, save_folder)
