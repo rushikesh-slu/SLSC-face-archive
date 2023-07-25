@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { HomeComponent } from './home/home.component';
 import { PersonGalleryComponent } from './person-gallery/person-gallery.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PersonGalleryComponent } from './person-gallery/person-gallery.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

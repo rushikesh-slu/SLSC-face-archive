@@ -6,7 +6,7 @@ from api.user import user
 
 
 app = Flask(__name__, static_folder='')
-
+CORS(app)
 app.register_blueprint(user,url_prefix='/api')
 
 
