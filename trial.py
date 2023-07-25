@@ -54,21 +54,24 @@ uuid_dict = {}
 for image_path in image_files:
     try:
         img = load_image(image_path).to(device)
-        face_embedding = get_face_embedding(img, resnet)
-        embeddings.append(face_embedding)
-        image_paths.append(image_path)
+        faces, _ = mtcnn(img.unsqueeze(0))
+        if faces is not None:
+            for face in faces:
+                face_embedding = get_face_embedding(face, resnet)
+                embeddings.append(face_embedding)
+                image_paths.append(image_path)
 
-        # Get the person's name (replace this with your logic to get the person's name from the image path)
-        person_name = os.path.basename(image_path).split('.')[0]
+                # Get the person's name (replace this with your logic to get the person's name from the image path)
+                person_name = os.path.basename(image_path).split('.')[0]
 
-        # Check if the person's UUID already exists in the dictionary
-        if person_name in uuid_dict:
-            # If it exists, add the image name to the existing UUID's list of images
-            uuid_dict[person_name].append(os.path.basename(image_path))
-        else:
-            # If it doesn't exist, generate a new UUID and create a new entry in the dictionary
-            new_uuid = str(uuid.uuid4())
-            uuid_dict[person_name] = [os.path.basename(image_path)]
+                # Check if the person's UUID already exists in the dictionary
+                if person_name in uuid_dict:
+                    # If it exists, add the image name to the existing UUID's list of images
+                    uuid_dict[person_name].append(os.path.basename(image_path))
+                else:
+                    # If it doesn't exist, generate a new UUID and create a new entry in the dictionary
+                    new_uuid = str(uuid.uuid4())
+                    uuid_dict[person_name] = [os.path.basename(image_path)]
     except Exception as e:
         print(f"Error processing image {image_path}: {e}")
 
@@ -118,4 +121,16 @@ plt.title('t-SNE Visualization with DBSCAN Clustering')
 plt.xlabel('Dimension 1')
 plt.ylabel('Dimension 2')
 plt.legend()
-plt.show()
+
+# Create a folder to save the visualizations
+save_folder = 'visualizations'
+os.makedirs(save_folder, exist_ok=True)
+
+# Save the t-SNE visualization to a file
+tsne_save_path = os.path.join(save_folder, 't-SNE_Visualization.png')
+plt.savefig(tsne_save_path)
+plt.close()
+
+# Visualize images in each cluster and save the visualizations
+for i in range(num_clusters):
+    visualize_cluster_images(i, uuid_dict_with_cluster, save_folder)
