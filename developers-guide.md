@@ -1,7 +1,6 @@
 # Developer's guide for SLSC face Tagging archive
 
 ## INTRODUCTION
-Sure, I can try to use the template I just gave to give a developer's guide for the SLSC face tagging archive. Here is a possible example:
 
 # Developer's Guide for SLSC Face Tagging Archive
 
