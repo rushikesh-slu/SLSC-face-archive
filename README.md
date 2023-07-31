@@ -10,10 +10,11 @@ Youth Exploring Science (YES) program is created to help underserved students in
 ## Project Brief
 The SLSC Photo Archive Face project is to Identify and Tag people from the images client or user uploads, next once the detected faces tagging is completed we need to store the organized result in a database readily available to access, the client with the help of photo tagging interface would like to sort photos with respect to student which helps them to keep track of each students progress.
 
-## 
-* Data(All the photos with their name tags),
-* As an admin, They can upload, edit and delete the images and tag them with their respective names.
-* Preprocess data.
-* Train a model/ Adapt a pre-trained model to fit our data.
-* Build UI/ Integrate with existing UI.
+## Documentation
+- [User Guide](USER_GUIDE.md)
+- [Developer Guide](developers-guide.md)
 
+### References
+- Face Recognition [[CODE]](https://github.com/ageitgey/face_recognition)
+- Unknown Face Classifier [[CODE]](https://github.com/ukayzm/opencv/tree/master/unknown_face_classifier)
+- Image Cluster [[CODE]](https://github.com/elcorto/imagecluster)
