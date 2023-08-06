@@ -14,7 +14,7 @@ export class HomeComponent {
     this.api.getPersons().subscribe(result =>{
       let res = result["unique"]
       for(var img of res){
-        let tempStr = 'assets/images/'+img["icon"]
+        let tempStr = 'assets/result/'+img["person"]+"/"+img["icon"]
         let temp = {
           url: tempStr,
           name : img["name"],
