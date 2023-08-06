@@ -1,0 +1,24 @@
+As part of UI for our project FaceTagging Application, I have thought of adding a component known as person-gallery which functions the
+below way. Here, we are using Angular as our UI technology.
+
+# Person Gallery Component Documentation
+The 'PersonGalleryComponent' is a Facetagging application feature component that displays a gallery of photographs connected with a
+specific person. This component uses Angular to dynamically retrieve photos from the backend API and show them in a grid manner.
+
+## Component Overview
+The 'PersonGalleryComponent' communicates with the backend API via the 'ApiService' to retrieve photographs linked with a certain individual.
+It receives the person's unique ID as a route parameter using `ActivatedRoute` from Angular's router. After obtaining the ID, the component
+sends a request to the backend in order to fetch the person's photos.
+
+## Component Implementation
+Our person-gallery component is organized similarly to an angular component, with three files: namley html, css, and typescript.
+Let me explain the rationale of the.ts file briefly.The PersonGalleryComponent is an essential component of the Facetagging application, 
+displaying a gallery of photographs connected with a given person. It makes use of Angular's ability to retrieve picture data from the
+backend API via the ApiService. When the component is initialized, it uses ActivatedRoute to subscribe to changes in the route parameters,
+allowing it to retrieve the person's unique ID.The component performs a request to the API based on this ID, obtains the person's photos, and
+dynamically displays them in a grid manner using Angular's template binding. This seamless integration of data retrieval and presentation
+enhances the user experience and facilitates effective image tagging and management within the application.
+
+##Summary 
+As Facetagging is centered around recognizing and tagging individuals in images, the PersonGalleryComponent becomes instrumental in 
+the tagging process. By displaying images related to a particular person, it enables users to easily add, edit, or remove tags associated with that individual. This streamlines the image tagging workflow, reducing manual effort and ensuring accurate identification of individuals in the application.

@@ -1,62 +1,101 @@
-# Developer's guide for SLSC face Tagging archive
+# Developer Guide for Angular-Flask Application
 
-## INTRODUCTION
-Sure, I can try to use the template I just gave to give a developer's guide for the SLSC face tagging archive. Here is a possible example:
+## Introduction
+This developer guide provides comprehensive information about setting up and developing an application that uses Angular for the frontend and Python Flask for the back end. Please follow the instructions below to contribute to the project.
 
-# Developer's Guide for SLSC Face Tagging Archive
+## Getting Started
 
-This project is a GitHub Action that builds and deploys a face tagging archive for the SLSC Yes program. It uses Python, Sphinx, facenet-pytorch and GitHub Pages to create and host a HTML documentation site that contains the face images and metadata of the participants.
+### Prerequisites
+Here are the requirements you need to install on your machine before you can start developing:
 
-## Prerequisites
+1. [Node.js](https://nodejs.org/en/download/) and npm (Node Package Manager) - required for Angular.
+2. [Python](https://www.python.org/downloads/) - required for Flask.
+3. [Git](https://git-scm.com/downloads) - for version control.
 
-To run this project, you need:
+### Project Structure
+The project has two main directories: `frontend` and `backend`. `frontend` contains Angular related files while `backend` contains Flask related files.
 
-- A GitHub account and a repository for your project
-- A GitHub token with the `repo` and `packages` scopes
-- Python 3.8 or higher installed on your machine
-- Pip installed on your machine
-- Flake8 and Pytest installed on your machine
-- Sphinx installed on your machine
-- A `requirements.txt` file that lists the Python dependencies for your project
-- A `docs` folder that contains the source files for your documentation site
-- A `main.yml` file that defines the workflow for your GitHub Action
+### Cloning the Repository
 
-## Installation and Configuration
+Clone the repository using git:
 
-To install and configure this project, you need to:
+```bash
+git clone https://github.com/rushikesh-slu/SLSC-face-archive.git
+cd SLSC-face-archive
+```
+## Setting up the Frontend (Angular)
 
-1. Fork or clone this repository to your own GitHub account.
-2. Create a new branch for your changes.
-3. Edit the `main.yml` file to suit your needs. You can change the name of the job, the triggers, the steps, and the parameters as you wish.
-4. Edit the `docs` folder to add or modify the content of your documentation site. You can use markdown or reStructuredText files to write your documentation. You can also use images, tables, code blocks, and other features supported by Sphinx. You can refer to this [guide](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html) for more information on how to use reStructuredText with Sphinx.
-5. Commit and push your changes to your branch.
-6. Create a pull request to merge your branch to the main branch.
+To set up the Angular part of the project, follow the steps below:
 
-## Build, Run, and Test
+1. **Navigate to the frontend directory**: Open your terminal and use the following command to change your current working directory to the 'frontend' directory:
+   ```bash
+   cd frontend
+   
+Install Angular CLI globally. Use the following command to install Angular CLI globally:
+```bash
 
-To build, run, and test this project, you need to:
+npm install -g @angular/cli
+```
+Install the required packages: All the required packages for your project are listed in the 'package.json' file. To install these packages, use the following command:
+```bash
+npm install
+```
+Run the Angular application: Now that you have installed all the required packages, you can start the Angular application using the following command:
+```bash
+ng serve
+```
+After running this command, the Angular development server starts.
+Open your web browser and visit http://localhost:4200 to see the running Angular application.
 
-1. Open VS Code and open your project folder.
-2. Run the `Python: Select Interpreter` command from the command palette (`Ctrl+Shift+P` on Windows or `Cmd+Shift+P` on Mac) and select Python 3.8 or higher.
-3. Run the `Terminal: Create New Integrated Terminal` command from the command palette to open a new terminal in VS Code.
-4. Run `pip install -r requirements.txt` in the terminal to install the Python dependencies for your project.
-5. Run `flake8 .` in the terminal to check for syntax errors and code style violations in your project.
-6. Run `pytest` in the terminal to run the tests for your project.
-7. Run `sphinx-build -b html docs docs/build/html` in the terminal to build the HTML documentation site for your project.
-8. Open the `docs/build/html/index.html` file in your browser to preview your documentation site.
 
-## Contributing
+## Setting up the Backend (Flask)
 
-To contribute to this project, you need to:
+Follow the steps below to set up the Flask part of the project:
 
-1. Follow the [GitHub flow](https://guides.github.com/introduction/flow/) workflow for collaborating on GitHub projects.
-2. Follow the [PEP 8](https://www.python.org/dev/peps/pep-0008/) style guide for writing Python code.
-3. Write clear and concise commit messages and pull request descriptions.
-4. Write unit tests for your code using Pytest.
-5. Write documentation for your code using Sphinx.
+1. **Navigate to the backend directory**: From your terminal, change your current working directory to the 'backend' directory:
+   ```bash
+   cd ../backend
+    ```
+Create a virtual environment: It's recommended to create and use a virtual environment in Python to avoid package dependencies issues. You can create a virtual environment using virtualenv or venv, among others. Activate the virtual environment before moving on to the next steps.
 
-## License and Acknowledgements
+Install the required Python packages:
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/rushikesh-slu/SLSC-face-archive/pull/29) file for more details.
+```bash
+pip install -r requirements.txt
+```
+Run the Flask application:
 
-This project is based on the [zip-release](https://github.com/TheDoctor0/zip-release) action by TheDoctor0 and the [action-sphinx-docs-to-gh-pages](https://github.com/marketplace/actions/action-sphinx-docs-to-gh-pages)
+```bash
+python main.py
+```
+After running this command, the Flask development server starts.
+
+The backend API will be live at http://localhost:5000.
+
+## Development Process
+
+Follow these steps for development:
+Update your main branch: Make sure you're on the `main` branch and it's up-to-date with `origin/main`:
+   ```bash
+   git checkout main
+   git pull origin main
+  ```
+Create a new branch for your feature or bug fix: Use the following commands to create and switch to a new branch:
+```bash
+git checkout -b your-feature-name
+```
+Make your changes and commit them: After making your changes, stage and commit them with a meaningful message:
+```bash
+git add .
+git commit -m "Your meaningful commit message"
+```
+Push your changes to your branch on GitHub: Use the following command to push your changes:
+```bash
+git push origin your-feature-name
+```
+
+Open a Pull Request on GitHub towards the main branch.
+
+
+
+
