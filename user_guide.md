@@ -4,6 +4,7 @@ Welcome to your guide on how to set up this project.
 
 ### Requirements
 - Python
+- Node
 
 Clone the repository using git:
 
@@ -14,12 +15,24 @@ cd SLSC-face-archive
 
 ## Running the application
 
+Open your terminal or command line interface and navigate to your frontend directory:
+
+```bash
+cd frontend/SLSCFaceTagging
+```
+
+Build frontend
+```bash
+npm install
+ng build
+```
+
 Open your terminal or command line interface and navigate to your  backend directory:
 
 ```bash
 cd backend
 ```
-Once you're in the backend directory, create and activate a Python virtual environment. This step helps to keep our project clean and avoid package dependencies issues.
+Once you're in the backend directory, create and activate a Python virtual environment. This step helps to keep our project clean and avoid package dependency issues.
 
 Now, let's install the required Python packages. Install them by running:
 
