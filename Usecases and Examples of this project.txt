@@ -1,0 +1,14 @@
+Use cases and Examples of Photo archive Face tagging project
+
+Hello visitors, Contributors, Users, Thank you for checking out Photo archive face tagging project, here are few use cases and examples this project can used for,
+1. Personal Photo Organization: If an individual who loves capturing moments with her friends and family. She has thousands of photos stored on her computer, and it becomes challenging to find specific images of individuals. The face classification tool can help organizing her photos by automatically identifying faces in group images if they are already classified and tagged to previous photos where the same individuals appear. This way, she can easily navigate through her photo collection and find pictures of her loved ones without going through countless images.
+
+2. Event Photography Business: For a event photography business, after a big event, they often ends up with hundreds of images featuring different attendees. Sorting and tagging these images manually can be time-consuming and might lead to errors. The face classification tool can simplify their workflow by automatically recognizing faces in group shots and associating them with previous photos of the same individuals. This allows them to quickly deliver personalized photo albums to their clients, enhancing customer satisfaction and streamlining his business operations.
+3. Missing Persons Search: In the event of a missing person, law enforcement agencies often rely on surveillance camera footage and public images to identify the person's whereabouts. The face classification tool can be integrated into their systems to automatically detect and classify faces in group images and match them against a database of previous images. This can significantly speed up the process of identifying and locating the missing individual, aiding in critical search and rescue operations.
+* 
+* 
+* 
+* 
+* 
+* 
+These are just few scenarios in which the project could help as it evolves, you are all welcome add your thoughts, ideas.
