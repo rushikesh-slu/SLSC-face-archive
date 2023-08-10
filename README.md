@@ -11,9 +11,9 @@ Youth Exploring Science (YES) program is created to help underserved students in
 The SLSC Photo Archive Face project is to Identify and Tag people from the images client or user uploads, next once the detected faces tagging is completed we need to store the organized result in a database readily available to access, the client with the help of photo tagging interface would like to sort photos with respect to student which helps them to keep track of each students progress.
 
 ## Documentation
-- [User Guide](user_guide.md)
-- [Developer Guide](developers-guide.md)
-- [User'sFAQ](User_FAQ.md)
+- [User Guide](Trials%20and%20documentations/user_guide.md)
+- [Developer Guide](Trials%20and%20documentations/developers-guide.md)
+- [User'sFAQ](Trials%20and%20documentations/User_FAQ.md)
 
 
 ### References
