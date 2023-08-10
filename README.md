@@ -13,6 +13,8 @@ The SLSC Photo Archive Face project is to Identify and Tag people from the image
 ## Documentation
 - [User Guide](user_guide.md)
 - [Developer Guide](developers-guide.md)
+- [User'sFAQ](User_FAQ.md)
+
 
 ### References
 - Face Recognition [[CODE]](https://github.com/ageitgey/face_recognition)
