@@ -98,4 +98,42 @@ Open a Pull Request on GitHub towards the main branch.
 
 
 
+# Pre-trained model
+
+**Note: Face Classification is not working in Windows. To run web application in Windows, you can classify faces in Ubuntu and copy database.csv, result folder, and place them in pretrained folder**
+
+### Installation
+
+please follow the steps mentioned in the repository.[https://github.com/ageitgey/face_recognition]
+
+Navigate to the pretrained directory: 
+```bash
+cd pretrained
+ ```
+
+
+Install the required Python packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+###Classification
+
+Resize images to desired sizes based on your input data. (checkout resize_images.py)
+
+Place the images in the resized_images_all folder.
+
+Create a folder named result(if not present). or Create any empty folder and make changes in person_db.py
+
+
+```bash
+python face_classsifier.py
+```
+
+
+
+
+
+
 
