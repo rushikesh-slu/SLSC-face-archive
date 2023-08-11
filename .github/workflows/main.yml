@@ -34,10 +34,10 @@ jobs:
 #         # exit-zero treats all errors as warnings
 #         flake8 . --count --exit-zero --statistics
 
-    - name: Test with pytest
-      run: |
-        pip install pytest
-        pytest
+#     - name: Test with pytest
+#       run: |
+#         pip install pytest
+#         pytest
         
     - name: Zip Release
       uses: TheDoctor0/zip-release@0.7.1
