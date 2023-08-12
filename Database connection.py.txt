@@ -1,0 +1,39 @@
+# Add database integration and face tagging logic
+
+import sqlite3
+
+conn = sqlite3.connect('photo_database.db')
+cursor = conn.cursor()
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    # ... (previous code)
+
+    if file and allowed_file(file.filename):
+        # Detect faces in the uploaded image
+        # ... (previous code)
+
+        # Save the image and faces data to the database
+        cursor.execute("INSERT INTO photos (filename) VALUES (?)", (filename,))
+        photo_id = cursor.lastrowid
+
+        for (x, y, w, h) in faces:
+            cursor.execute("INSERT INTO faces (photo_id, x, y, w, h) VALUES (?, ?, ?, ?, ?)",
+                           (photo_id, x, y, w, h))
+
+        conn.commit()
+
+        return jsonify({'message': 'File uploaded, faces detected, and data stored in the database'})
+
+    return jsonify({'error': 'Invalid file type'})
+
+if __name__ == '__main__':
+    cursor.execute('''CREATE TABLE IF NOT EXISTS photos
+                   (id INTEGER PRIMARY KEY AUTOINCREMENT, filename TEXT)''')
+    cursor.execute('''CREATE TABLE IF NOT EXISTS faces
+                   (id INTEGER PRIMARY KEY AUTOINCREMENT, photo_id INTEGER,
+                    x INTEGER, y INTEGER, w INTEGER, h INTEGER,
+                    FOREIGN KEY(photo_id) REFERENCES photos(id))''')
+    conn.commit()
+
+    app.run(debug=True)
