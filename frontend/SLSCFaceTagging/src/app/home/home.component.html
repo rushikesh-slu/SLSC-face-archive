@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <nav>
+    <h1>Saint Louis Science Center</h1>
+  </nav>
+  
+  <div class="gallery">
+    <a *ngFor="let image of images" [routerLink]="['/person',image.id]">
+      <div class="card">
+        <img [src]="image.url" [alt]="image.description"/>
+        <div class="name-tag">{{image.name}}</div>
+      </div>
+    </a>
+  </div>
+  
+  <!-- <footer>
+    <a routerLink="/page2">Next Page</a>
+  </footer> -->
+</body>
+</html>
