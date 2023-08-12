@@ -46,3 +46,10 @@ Great, you're all set! Start the Flask application by running:
 python main.py
 ```
 Application is now up and running at http://localhost:5000.
+
+
+
+
+## Image data.
+
+To train new images, please refer developer guide.
