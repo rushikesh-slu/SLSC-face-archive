@@ -1,0 +1,23 @@
+# Add the necessary imports and update the '/upload' route
+
+import cv2
+
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    # ... (previous code)
+
+    if file and allowed_file(file.filename):
+        # Detect faces in the uploaded image
+        image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        image = cv2.imread(image_path)
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
+
+        # Save the image and faces data to the database
+        # ...
+
+        return jsonify({'message': 'File uploaded and faces detected'})
+
+    return jsonify({'error': 'Invalid file type'})
