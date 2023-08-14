@@ -1,0 +1,20 @@
+Release Notes: We improved the system in this release by adding face detection using the OpenCV library. The system will automatically identify faces in uploaded photos and notify users whether a face was successfully identified.
+
+
+Contributions:
+
+I made the following significant contributions to this release:
+
+
+
+For face detection, the OpenCV library was included.
+
+Face detection logic was implemented using the Haar Cascade classifier.
+
+'/upload' route processing of submitted images and face detection improved.
+
+updated the answers to let users know when facial detection had been successful.
+
+User-Friendly Application:
+
+The same web interface from the previous release is still available for users to utilize to communicate with the system. 
